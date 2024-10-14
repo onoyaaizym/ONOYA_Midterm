@@ -1,4 +1,4 @@
-// Defaul constructor
+// Default constructor
 class Person {
     private String name;
     private int age;
