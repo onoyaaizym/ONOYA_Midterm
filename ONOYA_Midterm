@@ -1,0 +1,91 @@
+// Defaul constructor
+class Person {
+    private String name;
+    private int age;
+
+    // Parameterized constructor 
+    public Person(String name, int age) {
+        this.name = name;   // differentiates instance variable from parameters
+        this.age = age;     // refers to the instance variable
+    }
+
+    public void displayInfo() {
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+    }
+}
+
+class Student extends Person {
+    private String studentID;
+    private String course;
+    private int units;
+    private final int feePerUnit = 1000;
+
+    // Parameterized constructor for Student
+    public Student(String name, int age, String studentID, String course, int units) {
+        super(name, age); // Calls person's constructor
+        this.studentID = studentID; // differentiates instance variable from parameters
+        this.course = course;       // refers to the instance variable
+        this.units = units;         // refers to the instance variable
+    }
+
+    public double calculateFees() {
+        return units * feePerUnit;
+    }
+
+    @Override
+    public void displayInfo() {
+        super.displayInfo(); // Calls person's constructor
+        System.out.println("Student ID: " + studentID);
+        System.out.println("Course: " + course);
+        System.out.println("Units: " + units);
+        System.out.println("Total Fee: " + calculateFees());
+    }
+}
+
+// the 'extends' indicates that a class is inherited from another class
+class Instructor extends Person {
+    private String employeeID;
+    private String department;
+    private double salary;
+
+    // Parameterized constructor for Instructor
+    public Instructor(String name, int age, String employeeID, String department, double salary) {
+        super(name, age);
+        this.employeeID = employeeID;   // differentiates instance variable from parameters
+        this.department = department;   // refers to the instance variable
+        this.salary = salary;           // refers to the instance variable
+    }
+
+    @Override
+    public void displayInfo() {
+        super.displayInfo(); // Calls the parent's class displayInfo method 
+        System.out.println("Employee ID: " + employeeID);
+        System.out.println("Department: " + department);
+        System.out.println("Salary: " + salary);
+    }
+}
+
+public class UniversityEnrollment {
+    public static void printDetails(Person p) {
+        p.displayInfo();
+    }
+
+    public static void main(String[] args) {
+        Student student1 = new Student ("Aizy Michelle", 18, "S231003700", "Data Structure and Algorithm Analysis", 6);
+        Student student2 = new Student ("Jelwin Santi", 18, "S241003700", "Data Structure and Algorithm Analysis", 6);
+
+        Instructor instructor1 = new Instructor ("Engr. Jovillano", 20, "E12345", "CEA", 25000);
+        Instructor instructor2 = new Instructor ("Dr. Clemente", 45, "E12385", "CTDE", 30000);
+
+        // Print details of all persons using polymorphism
+        System.out.println("\nStudent 1");
+        printDetails(student1); // display output
+        System.out.println("\nStudent 2");
+        printDetails(student2); // display output
+        System.out.println("\nInstructor 1");
+        printDetails(instructor1); // display output
+        System.out.println("\nInstructor 2");
+        printDetails(instructor2); // display output
+    }
+}
